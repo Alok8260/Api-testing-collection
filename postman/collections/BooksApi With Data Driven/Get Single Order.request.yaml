@@ -1,0 +1,29 @@
+$kind: http-request
+url: "{{BookApi_Url}}/{{orderId_Env}}"
+method: GET
+body:
+  type: text
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: 51813786cb0d6e999f62ed5340a024fb03d2acec1fc385f2d3b776359c109e8f
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Validating status code should be 200 \", ()=>{\r
+
+      \    pm.response.to.have.status(200)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Verify the Order Id Present in the response or not\",()=>{\r
+
+      \   var jsonData= pm.response.json();\r
+
+      \    pm.expect(jsonData.id).to.eql(pm.environment.get(\"orderId_Env\"))\r
+
+      })"
+    language: text/javascript
+order: 2000

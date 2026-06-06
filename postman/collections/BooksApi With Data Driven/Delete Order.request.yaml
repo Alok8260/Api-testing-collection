@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{BookApi_Url}}/{{orderId_Env}}"
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: 51813786cb0d6e999f62ed5340a024fb03d2acec1fc385f2d3b776359c109e8f
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Validating Status Code Should be 204\", ()=>{\r
+
+      \    pm.response.to.have.status(204)\r
+
+      })\r
+
+      pm.environment.unset(\"orderId_Env\")"
+    language: text/javascript
+order: 3000

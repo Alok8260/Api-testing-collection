@@ -1,0 +1,35 @@
+$kind: http-request
+url: "{{BookApi_Url}}/orders"
+method: POST
+body:
+  type: text
+  content: "{\r
+
+    \  \"bookId\": \"{{BookID}}\",\r
+
+    \  \"customerName\": \"{{CustomerName}}\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: 51813786cb0d6e999f62ed5340a024fb03d2acec1fc385f2d3b776359c109e8f
+scripts:
+  - type: afterResponse
+    code: "//This is verify the status code\r
+
+      pm.test(\"Validating Status Code is 201\",()=>{\r
+
+      \    pm.response.to.have.status(201)\r
+
+      })\r
+
+      \r
+
+      //Store the order id in the environment variable\r
+
+      var jsonData=pm.response.json()\r
+
+      pm.environment.set(\"orderId_Env\",jsonData.orderId)"
+    language: text/javascript
+order: 1000

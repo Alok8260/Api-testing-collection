@@ -1,0 +1,44 @@
+$kind: http-request
+url: "{{url}}api/cart/products"
+method: GET
+body:
+  type: urlencoded
+auth:
+  type: apikey
+  credentials:
+    in: query
+    key: api_token
+    value: "{{token}}"
+scripts:
+  - type: afterResponse
+    code: "let cartResponse = pm.response.json();\r
+
+      \r
+
+      // Safety check\r
+
+      if (cartResponse.products && cartResponse.products.length > 0) {\r
+
+      \r
+
+      \    let cartId = cartResponse.products[0].cart_id;\r
+
+      \r
+
+      \    // Save to collection variable\r
+
+      \    pm.collectionVariables.set(\"cart_id\", cartId);\r
+
+      \r
+
+      \    console.log(\"Saved the cart id: \" + cartId);\r
+
+      \r
+
+      } else {\r
+
+      \    console.log(\"Cart is empty\");\r
+
+      }\r\n"
+    language: text/javascript
+order: 3000

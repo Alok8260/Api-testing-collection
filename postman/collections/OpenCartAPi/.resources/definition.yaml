@@ -1,0 +1,10 @@
+$kind: collection
+variables:
+  ip: ""
+  url: ""
+  token: ""
+  product_Id: ""
+  quantity: ""
+  update_Qty_Id: ""
+  update_qty: ""
+  cart_id: ""

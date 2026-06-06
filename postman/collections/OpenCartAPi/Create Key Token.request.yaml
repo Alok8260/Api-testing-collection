@@ -1,0 +1,41 @@
+$kind: http-request
+url: "{{url}}api/login"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: username
+      value: demo
+    - type: text
+      key: key
+      value: Dv1Xby03Uh5plsY2nkrA8fM7SV0GfNKjQLg7au2vyvIxMQRDF4LnjA67FYjMnck5hrumZZaKZjVYB6ZZE5FiljnUcpgvKvBTWdVXE0PJDezZtIdOkMtwNQxIFlUuqh0FVJPopU06Pab8vRVyXMe3zAYyHB8OQsS8Reok4dGbmS2NbsG0zZ8TTin4gybOKIgmeqK78pEFTtq6jifzbgntFhasMD5Rrewogy04r0rBwnu7NqAySUVM0CAwOV3RhNjX
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code should be 200\", ()=>{\r
+
+      \    pm.response.to.have.status(200);   \r
+
+      })\r
+
+      //Capturing the json response\r
+
+      let jsonData=pm.response.json();\r
+
+      \r
+
+      //Validating the json response\r
+
+      pm.test(\"Checking the Success Message\", ()=>{\r
+
+      \    pm.expect(jsonData.success).to.eql(\"Success: API session successfully started!\");\r
+
+      });\r
+
+      \r
+
+      pm.collectionVariables.set(\"token\",jsonData.api_token)\r
+
+      \r\n"
+    language: text/javascript
+order: 1000

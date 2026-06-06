@@ -1,0 +1,38 @@
+$kind: http-request
+url: "{{url}}api/cart/add"
+method: POST
+body:
+  type: urlencoded
+  content:
+    product_id: "{{product_Id}}"
+    quantity: "{{quantity}}"
+auth:
+  type: apikey
+  credentials:
+    key: api_token
+    in: query
+    value: "{{token}}"
+scripts:
+  - type: beforeRequest
+    code: "pm.collectionVariables.set(\"product_Id\", \"40\");\r
+
+      pm.collectionVariables.set(\"quantity\", \"2\");"
+    language: text/javascript
+  - type: afterResponse
+    code: "pm.test(\"Status code should be 200\", ()=>{\r
+
+      \    pm.response.to.have.status(200);\r
+
+      })\r
+
+      \r
+
+      \ let jsonResponse=pm.response.json();\r
+
+      pm.test(\"Response to be success\", ()=>{\r
+
+      \    pm.expect(jsonResponse.success).to.eql(\"Success: You have modified your shopping cart!\");\r
+
+      })"
+    language: text/javascript
+order: 2000

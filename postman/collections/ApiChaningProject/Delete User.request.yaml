@@ -1,0 +1,15 @@
+$kind: http-request
+url: https://gorest.co.in/public/v2/users/{{userId_Env}}
+method: DELETE
+body:
+  type: text
+  content: "{\r
+
+    \    \"name\": \"Api Chain Practice\",\r
+
+    \    \"email\":\"apichain@practice.com\",\r
+
+    \    \"status\":\"active\"\r
+
+    }"
+order: 4000

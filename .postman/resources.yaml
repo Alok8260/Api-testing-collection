@@ -1,0 +1,12 @@
+workspace:
+  id: 987b0fa9-5781-45b7-8b0b-626748e8e266
+localResources:
+  collections:
+    - ../postman/collections/BooksApi With Data Driven
+    - ../postman/collections/ApiChaningProject
+    - ../postman/collections/OpenCartAPi
+cloudResources:
+  collections:
+    ../postman/collections/BooksApi With Data Driven: 47050135-6f3cca8f-7773-4e36-a4a0-0c6381a4ec13
+    ../postman/collections/ApiChaningProject: 47050135-b6bb1af0-fdda-405c-b358-b16bcce692e0
+    ../postman/collections/OpenCartAPi: 47050135-ed0da55c-62ec-4dac-b229-54a624b636fb

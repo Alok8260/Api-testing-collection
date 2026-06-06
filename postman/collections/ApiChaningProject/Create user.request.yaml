@@ -1,0 +1,38 @@
+$kind: http-request
+url: https://gorest.co.in/public/v2/users
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"{{Name_Env}}\",\r
+
+    \    \"gender\":\"Male\",\r
+
+    \    \"email\":\"{{email_Env}}\",\r
+
+    \    \"status\":\"inactive\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "var jsonData = pm.response.json();\r
+
+      pm.environment.set(\"userId_Env\", jsonData.id);\r\n"
+    language: text/javascript
+  - type: beforeRequest
+    code: "var randomData=Math.random().toString(36).substring(4);\r
+
+      \r
+
+      var userEmail=\"alok\"+randomData+\"@gmail.com\";\r
+
+      var username=\"Alok \"+randomData;\r
+
+      \r
+
+      pm.environment.set(\"email_Env\", userEmail);\r
+
+      pm.environment.set(\"Name_Env\", username)"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{url}}api/cart/remove"
+method: POST
+body:
+  type: urlencoded
+  content:
+    key: "{{cart_id}}"
+auth:
+  type: apikey
+  credentials:
+    in: query
+    key: api_token
+    value: "{{token}}"
+scripts:
+  - type: afterResponse
+    code: "let removeValudation=pm.response.json();\r
+
+      pm.test(\"Check the Validation message\",()=>{\r
+
+      \    pm.expect(removeValudation.success).to.eql(\"Success: You have modified your shopping cart!\")\r
+
+      } )"
+    language: text/javascript
+order: 5000

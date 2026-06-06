@@ -14,7 +14,7 @@ This repository contains a Postman collection for testing and documenting REST A
 - Environment files
 - API test cases
 
-## Tools Used
+## Tools Usedgit 
 - Postman
 - REST API
 - JavaScript (Postman Tests)
@@ -27,4 +27,4 @@ This repository contains a Postman collection for testing and documenting REST A
 4. Run requests or collection tests
 
 ## Author
-Your Name
+Alok Bharati
